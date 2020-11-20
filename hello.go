@@ -6,6 +6,8 @@ import (
 	"math"
 	"math/cmplx"
 	"math/rand"
+	"runtime"
+	"time"
 )
 
 //函数定义
@@ -38,6 +40,8 @@ func needFloat(x float64) float64 {
 }
 
 func main() {
+	//包、导出名、函数
+	fmt.Println("=======包、导出名、函数======")
 	fmt.Println("Hello, World")
 	fmt.Println("Hello, ", rand.Intn(10))
 	fmt.Println("Hello, ", math.Pi)
@@ -48,6 +52,7 @@ func main() {
 	fmt.Println(x, y)
 
 	//变量
+	fmt.Println("=======变量======")
 	var java, python bool
 	var str, boolean, number = "abc", true, 12
 	var d, e int = 1, 2
@@ -59,6 +64,7 @@ func main() {
 	fmt.Println(d, e)
 
 	//数据类型
+	fmt.Println("=======数据类型======")
 	var (
 		ToBe   bool       = false
 		MaxInt uint64     = 1<<64 - 1
@@ -69,6 +75,7 @@ func main() {
 	fmt.Printf("Type: %T Value: %v\n", z, z)
 
 	//类型转换
+	fmt.Println("=======类型转换======")
 	var i int = 42
 	var f float64 = float64(i)
 	var u uint = uint(f)
@@ -78,10 +85,12 @@ func main() {
 	fmt.Println(u)
 
 	//类型推导
+	fmt.Println("=======类型推导======")
 	v := 42 // 修改这里！
 	fmt.Printf("v is of type %T\n", v)
 
 	//常量
+	fmt.Println("=======常量======")
 	const P = 3.14
 	const Q = "abc"
 	const W = true
@@ -89,4 +98,99 @@ func main() {
 	fmt.Println(needFloat(Small))
 	fmt.Println(needFloat(Big))
 
+	//for循环
+	fmt.Println("=======for======")
+	sum := 0
+	for i := 0; i < 5; i++ {
+		sum += i
+	}
+	fmt.Println(sum)
+
+	for sum < 20 {
+		sum += sum
+	}
+	fmt.Println(sum)
+
+	// for {
+
+	// }
+
+	//if
+	fmt.Println("=======if======")
+	if sum > 30 {
+		fmt.Println("YES")
+	}
+
+	if xx := math.Pow(1, 2); xx < 20 {
+		fmt.Println("xx is ", xx)
+	} else {
+		fmt.Println("HAHA")
+	}
+	// fmt.Println(xx)
+
+	//练习 循环与函数
+	fmt.Println("=======练习 循环与函数======")
+	fmt.Println(mySqrt(2, false))
+	fmt.Println(mySqrt(2, true))
+
+	//switch
+	fmt.Println("=======switch======")
+	switch os := runtime.GOOS; os {
+	case "windows":
+		fmt.Println("Windows")
+		fallthrough
+	case "darwin":
+		fmt.Println("OS X")
+	case "linux":
+		fmt.Println("Linux")
+	default:
+		fmt.Println(os)
+	}
+
+	switch x {
+	case 0:
+		fmt.Println("x is 0")
+	case int(mySqrt(4, true)):
+		fmt.Println("x is ", x)
+	}
+
+	t := time.Now()
+	switch {
+	case t.Hour() < 12:
+		fmt.Println("Good morning!")
+	case t.Hour() < 17:
+		fmt.Println("Good afternoon.")
+	default:
+		fmt.Println("Good evening.")
+	}
+
+	//defer
+	fmt.Println("=======defer======")
+	defer fmt.Println("Final")
+	fmt.Println("Not Final")
+	for i := 0; i < 10; i++ {
+		defer fmt.Println(i)
+	}
+	fmt.Println("Not Final 2")
+}
+
+func mySqrt(x float64, isTimes bool) float64 {
+	z := 1.0
+	if isTimes {
+		for i := 0; i < 10; i++ {
+			z -= (z*z - x) / (2 * z)
+			fmt.Println("z is ", z)
+		}
+		return z
+	}
+	temp := x
+	loops := 0
+	for math.Abs(z-temp) > 0.00000001 {
+		temp = z
+		z -= (z*z - x) / (2 * z)
+		loops++
+		fmt.Println("z is ", z)
+	}
+	fmt.Println("loop times is ", loops)
+	return z
 }
