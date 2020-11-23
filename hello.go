@@ -172,6 +172,26 @@ func main() {
 		defer fmt.Println(i)
 	}
 	fmt.Println("Not Final 2")
+
+	//指针
+	fmt.Println("=======指针======")
+	// var po int
+	// po = 10
+	// var p *int
+	// p = &po
+	// *p = *p - 1
+	// fmt.Println(po)
+
+	i, j := 42, 2701
+
+	p := &i         // 指向 i
+	fmt.Println(*p) // 通过指针读取 i 的值
+	*p = 21         // 通过指针设置 i 的值
+	fmt.Println(i)  // 查看 i 的值
+
+	p = &j         // 指向 j
+	*p = *p / 37   // 通过指针对 j 进行除法运算
+	fmt.Println(j) // 查看 j 的值
 }
 
 func mySqrt(x float64, isTimes bool) float64 {
