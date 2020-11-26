@@ -175,23 +175,90 @@ func main() {
 
 	//指针
 	fmt.Println("=======指针======")
-	// var po int
-	// po = 10
-	// var p *int
-	// p = &po
-	// *p = *p - 1
-	// fmt.Println(po)
+	var po int
+	po = 10
+	var p *int
+	p = &po
+	*p = *p - 1
+	fmt.Println(*p)
 
-	i, j := 42, 2701
+	// i, j := 42, 2701
 
-	p := &i         // 指向 i
-	fmt.Println(*p) // 通过指针读取 i 的值
-	*p = 21         // 通过指针设置 i 的值
-	fmt.Println(i)  // 查看 i 的值
+	// p := &i         // 指向 i
+	// fmt.Println(*p) // 通过指针读取 i 的值
+	// *p = 21         // 通过指针设置 i 的值
+	// fmt.Println(i)  // 查看 i 的值
 
-	p = &j         // 指向 j
-	*p = *p / 37   // 通过指针对 j 进行除法运算
-	fmt.Println(j) // 查看 j 的值
+	// p = &j         // 指向 j
+	// *p = *p / 37   // 通过指针对 j 进行除法运算
+	// fmt.Println(j) // 查看 j 的值
+
+	//结构体
+	fmt.Println("=======结构体======")
+	type Vertex struct {
+		X int
+		Y int
+	}
+
+	var st Vertex
+	st = Vertex{3, 4}
+	st.X = 9
+	np := &st
+	fmt.Println(Vertex{1, 2})
+	fmt.Println(st.X)
+	fmt.Println(np.Y)
+
+	//数组
+	fmt.Println("=======数组======")
+	var list1 [2]string
+	list1[0] = "hello"
+	list1[1] = "world"
+	list2 := [5]int{1, 2, 3, 4, 5}
+	fmt.Println(list1)
+	fmt.Println(list2)
+
+	//切片
+	fmt.Println("=======切片======")
+	var slice1 []int = list2[2:3]
+	slice2 := list2[3:4]
+	fmt.Println(slice1)
+	fmt.Println(slice2)
+	slice1[0] = 9
+	slice2[0] = 9
+	fmt.Println(slice1)
+	fmt.Println(slice2)
+	fmt.Println(list2)
+
+	var slicenil []int
+	fmt.Println(slicenil, len(slicenil), cap(slicenil))
+	if nil == slicenil {
+		fmt.Println("nil slice")
+	}
+
+	slice3 := make([]int, 5)
+	fmt.Println(slice3, len(slice3), cap(slice3))
+	slice4 := make([]int, 0, 5)
+	fmt.Println(slice4, len(slice4), cap(slice4))
+
+	slice0 := make([]int, 0, 0)
+	slice5 := append(slice0, 1, 2, 3)
+	fmt.Println(slice0, len(slice0), cap(slice0))
+	fmt.Println(slice5, len(slice5), cap(slice5))
+
+	fmt.Println("++++++++++")
+	var pow = []int{1, 2, 4, 8, 16, 32, 64, 128}
+	for i, v := range pow {
+		fmt.Printf("2**%d = %d\n", i, v)
+	}
+
+	for i1 := range pow {
+		fmt.Println(i1)
+	}
+
+	for _, v1 := range pow {
+		fmt.Println(v1)
+	}
+	fmt.Println("++++++++++")
 }
 
 func mySqrt(x float64, isTimes bool) float64 {
