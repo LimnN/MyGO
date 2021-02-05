@@ -259,6 +259,12 @@ func main() {
 		fmt.Println(v1)
 	}
 	fmt.Println("++++++++++")
+
+	// //映射
+	// fmt.Println("=======切片======")
+	// var m1 map[string]int
+	// m1["abc"] = 12
+	// fmt.Println(m1["abc"])
 }
 
 func mySqrt(x float64, isTimes bool) float64 {
